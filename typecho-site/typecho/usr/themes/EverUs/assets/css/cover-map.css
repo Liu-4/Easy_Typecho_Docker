@@ -1,0 +1,7 @@
+.map_content{
+    background-color: #121212;
+    border-radius: 1rem;
+    border: solid 0.1rem rgba(44, 44, 44, 0.2);
+    overflow: hidden;
+    margin-block-end: .5rem;
+}

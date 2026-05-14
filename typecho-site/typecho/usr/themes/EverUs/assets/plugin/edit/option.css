@@ -1,0 +1,42 @@
+.editor{
+    margin-bottom: .5rem!important;
+}
+.wmd-edittab{
+    display: none !important;
+}
+.typecho-post-area .url-slug{
+    margin-top:0!important;
+}
+.wmd-edittab {
+    float: none !important;
+    margin-top: 0.5rem !important;
+    font-size: .92857em;
+}
+.wmd-edittab a {
+    display: inline-block;
+    padding: 0!important;
+    margin-left: 0!important;
+    height: 20px;
+    line-height: 20px;
+}
+.wmd-button-row{
+    height: auto !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.editor_emoji {
+    cursor: pointer;
+    margin: 0.25rem;
+    font-size: 1.25rem;
+    line-height: 2rem;
+}
+.emojiblock{
+    height: 6vh;
+    overflow: auto;
+}
+.origin_btn svg{
+    width: 1.5em;
+    height: 1.5em;
+    fill: rgba(153,153,153,1);
+}

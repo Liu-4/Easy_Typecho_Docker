@@ -1,0 +1,53 @@
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: typecho-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-Abc..123}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-typecho_db}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - typecho-net
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    container_name: typecho-php
+    restart: unless-stopped
+    volumes:
+      - ./typecho:/var/www/html
+      # 如果需要，可以把 fix-permissions.sh 单独挂载以确保最新，但已 COPY 进镜像
+    networks:
+      - typecho-net
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-typecho_db}
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:-Abc..123}
+
+  nginx:
+    image: nginx:latest
+    container_name: typecho-nginx
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-4520}:80"
+    volumes:
+      - ./typecho:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - typecho-net
+    depends_on:
+      - php
+
+volumes:
+  mysql-data:
+
+networks:
+  typecho-net:
+    driver: bridge

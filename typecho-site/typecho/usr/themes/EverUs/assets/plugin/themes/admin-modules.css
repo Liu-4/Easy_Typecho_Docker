@@ -1,0 +1,47 @@
+.container{
+    max-width:100% !important;
+}
+.col-tb-offset-2{
+    margin-left:0 !important;
+}
+.col-tb-8{
+    width: 100%;
+}
+.tab-buttons {
+    display: flex;
+    background: #f8f9fa;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border-right: 1px solid #e6e6e6;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    background: #f0f0f0;
+}
+
+.tab-btn.active {
+    background: #fff;
+    color: #1e9fff;
+    border-bottom: 2px solid #1e9fff;
+    font-weight: bold;
+}
+
+.tab-btn .layui-icon {
+    font-size: 16px;
+}
+
+.tab-content.active{
+    display: block !important;
+}
+.tab-content{
+    display: none;
+}

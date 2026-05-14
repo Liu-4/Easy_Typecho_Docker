@@ -1,0 +1,13 @@
+FROM php:7.4-fpm
+RUN docker-php-ext-install pdo_mysql
+
+# 将 www-data 的 UID/GID 改为 1000（兼容大多数宿主机的普通用户）
+RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
+
+# 复制权限修复脚本
+COPY fix-permissions.sh /usr/local/bin/fix-permissions.sh
+RUN chmod +x /usr/local/bin/fix-permissions.sh
+
+# 容器启动时先修复权限，再启动 PHP-FPM
+ENTRYPOINT ["/bin/sh", "-c", "/usr/local/bin/fix-permissions.sh && docker-php-entrypoint php-fpm"]
+
